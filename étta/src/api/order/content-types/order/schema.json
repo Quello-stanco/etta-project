@@ -1,0 +1,106 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "governorate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::governorate.governorate",
+      "inversedBy": "order"
+    },
+    "orderNumber": {
+      "type": "uid"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    },
+    "quantities": {
+      "type": "json"
+    },
+    "subtotal": {
+      "type": "decimal"
+    },
+    "shippingCost": {
+      "type": "decimal"
+    },
+    "total": {
+      "type": "decimal"
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": [
+        "cash_on_delivery",
+        "credit_card",
+        "apple_pay"
+      ]
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "pending",
+        "paid",
+        "failed",
+        "refunded"
+      ]
+    },
+    "orderStatus": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "pending",
+        "confirmed",
+        "processing",
+        "shipped",
+        "delivered",
+        "cancelled"
+      ]
+    },
+    "stripeSessionId": {
+      "type": "string"
+    },
+    "trackingNumber": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "text"
+    },
+    "adminNotes": {
+      "type": "text"
+    },
+    "statusHistory": {
+      "type": "json"
+    }
+  }
+}
